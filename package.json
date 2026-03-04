@@ -1,0 +1,22 @@
+{
+  "name": "tui",
+  "version": "1.0.0",
+  "description": "TypeScript Terminal UI Components",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "showcase": "tsx src/demos/showcase.ts",
+    "interactive": "tsx src/demos/interactive.ts",
+    "dev": "tsx watch src/demos/showcase.ts"
+  },
+  "keywords": ["tui", "terminal", "cli", "components"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^25.3.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
