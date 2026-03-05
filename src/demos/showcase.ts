@@ -1,17 +1,20 @@
 /**
- * 🎨 TUI Component Showcase
- * 
+ * TUI Component Showcase
+ *
  * Run:  npx tsx src/demos/showcase.ts
- * 
+ *
  * Demonstrates all the terminal UI components in sequence.
  */
 
 import {
   fg, bg, style, colorize,
-  Spinner, spinnerStyles,
+  Spinner,
   ProgressBar,
-  Box, borderStyles,
+  Box,
   Table,
+  Toast, toast,
+  List,
+  Badge,
   typewriter, gradientWave, shimmer, bouncingText,
 } from "../index.js";
 
@@ -34,7 +37,7 @@ async function main() {
 
   // ── Welcome Banner ──────────────────────────────────────────────
   const banner = new Box({
-    title: "✨ TUI Components Showcase ✨",
+    title: "TUI Components Showcase",
     titleAlignment: "center",
     borderStyle: "double",
     borderColor: fg.brightCyan,
@@ -70,7 +73,7 @@ async function main() {
   console.log(colorize("\n  Gradient wave:", fg.yellow));
   process.stdout.write("  ");
   await gradientWave({
-    text: "★ This text flows through a rainbow of colors ★",
+    text: "This text flows through a rainbow of colors",
     duration: 3000,
     speed: 40,
   });
@@ -79,7 +82,7 @@ async function main() {
   console.log(colorize("\n  Shimmer/sparkle:", fg.yellow));
   process.stdout.write("  ");
   await shimmer({
-    text: "✨ Sparkling magical text effect ✨",
+    text: "Sparkling magical text effect",
     duration: 3000,
     baseColor: fg.brightCyan,
   });
@@ -98,7 +101,7 @@ async function main() {
   divider("2. SPINNER STYLES");
 
   const spinnerNames = ["dots", "braille", "arc", "bouncingBar", "pulse", "arrows", "line"];
-  
+
   for (const name of spinnerNames) {
     const spinner = new Spinner({ text: `Spinner style: "${name}"`, style: name });
     spinner.start();
@@ -162,7 +165,7 @@ async function main() {
   // ── 4. Boxes ────────────────────────────────────────────────────
   divider("4. BOX / PANEL STYLES");
 
-  const boxStyles: Array<{ name: string; style: string; color: string; dimBorder?: boolean }> = [
+  const boxStyles: Array<{ name: string; style: string; color: string }> = [
     { name: "Round (default)", style: "round", color: fg.cyan },
     { name: "Single", style: "single", color: fg.green },
     { name: "Double", style: "double", color: fg.yellow },
@@ -186,7 +189,7 @@ async function main() {
     console.log();
   }
 
-  // Nested-looking boxes
+  // Info box
   const infoBox = new Box({
     title: "System Info",
     borderStyle: "round",
@@ -196,7 +199,7 @@ async function main() {
   });
 
   console.log(infoBox.render(
-    colorize("  Status:  ", fg.gray) + colorize("● Online", fg.brightGreen, style.bold) + "\n" +
+    colorize("  Status:  ", fg.gray) + colorize("Online", fg.brightGreen, style.bold) + "\n" +
     colorize("  Uptime:  ", fg.gray) + colorize("12d 4h 32m", fg.white) + "\n" +
     colorize("  CPU:     ", fg.gray) + colorize("23%", fg.brightYellow) + "\n" +
     colorize("  Memory:  ", fg.gray) + colorize("4.2 GB / 16 GB", fg.white) + "\n" +
@@ -208,14 +211,19 @@ async function main() {
   divider("5. TABLE");
 
   const table = new Table({
-    headers: ["Component", "Status", "Lines", "Features"],
+    headers: ["Component", "Status", "Description"],
     rows: [
-      ["Spinner", colorize("✔ Done", fg.green), "120", "9 styles, live updates"],
-      ["Progress Bar", colorize("✔ Done", fg.green), "130", "Gradient, ETA, count"],
-      ["Box / Panel", colorize("✔ Done", fg.green), "140", "6 borders, titles"],
-      ["Select / Menu", colorize("✔ Done", fg.green), "130", "Keyboard nav, scroll"],
-      ["Animated Text", colorize("✔ Done", fg.green), "200", "4 animation types"],
-      ["Table", colorize("✔ Done", fg.green), "100", "Headers, alt-rows"],
+      ["Spinner", colorize("Done", fg.green), "9 styles, live text updates, elapsed time"],
+      ["Progress Bar", colorize("Done", fg.green), "Gradient, ETA, percentage, item counts"],
+      ["Box / Panel", colorize("Done", fg.green), "6 border styles, titles, padding"],
+      ["Select / Menu", colorize("Done", fg.green), "Keyboard nav, scrolling, vim keys"],
+      ["Animated Text", colorize("Done", fg.green), "Typewriter, wave, shimmer, bounce"],
+      ["Table", colorize("Done", fg.green), "Headers, alternating rows, auto-width"],
+      ["Toast", colorize("Done", fg.green), "Success, error, warning, info notifications"],
+      ["Input", colorize("Done", fg.green), "Validation, masking, placeholder support"],
+      ["Confirm", colorize("Done", fg.green), "Yes/No toggle with keyboard control"],
+      ["List", colorize("Done", fg.green), "6 styles, nesting, task checkboxes"],
+      ["Badge", colorize("Done", fg.green), "Presets, outline, dot, custom colors"],
     ],
     borderColor: fg.gray,
     headerColor: fg.brightCyan + style.bold,
@@ -224,8 +232,72 @@ async function main() {
   console.log(table.render());
   await sleep(500);
 
-  // ── 6. Color Palette ────────────────────────────────────────────
-  divider("6. COLOR PALETTE");
+  // ── 6. Toast Notifications ─────────────────────────────────────
+  divider("6. TOAST NOTIFICATIONS");
+
+  console.log(toast.success("Build completed successfully!"));
+  console.log();
+  console.log(toast.error("Connection refused on port 5432"));
+  console.log();
+  console.log(toast.warn("Deprecated API: use v2 endpoint instead"));
+  console.log();
+  console.log(toast.info("Server listening on http://localhost:3000"));
+  await sleep(500);
+
+  // ── 7. Lists ───────────────────────────────────────────────────
+  divider("7. LISTS");
+
+  console.log(colorize("  Bullet list:", fg.yellow, style.bold));
+  console.log();
+  const bulletList = new List({ style: "bullet", bulletColor: fg.cyan });
+  console.log(bulletList.render([
+    "First item",
+    "Second item with details",
+    { text: "Nested items", children: [
+      { text: "Child A" },
+      { text: "Child B", children: [{ text: "Grandchild" }] },
+    ]},
+    "Fourth item",
+  ]));
+
+  console.log();
+  console.log(colorize("  Task list:", fg.yellow, style.bold));
+  console.log();
+  const taskList = new List({ style: "task" });
+  console.log(taskList.render([
+    { text: colorize("Set up project structure", fg.gray, style.strikethrough), checked: true },
+    { text: colorize("Write core components", fg.gray, style.strikethrough), checked: true },
+    { text: colorize("Add new components", fg.gray, style.strikethrough), checked: true },
+    { text: "Write tests", checked: false },
+    { text: "Update documentation", checked: false },
+  ]));
+
+  console.log();
+  console.log(colorize("  Numbered list:", fg.yellow, style.bold));
+  console.log();
+  const numList = new List({ style: "numbered", bulletColor: fg.brightYellow });
+  console.log(numList.render([
+    "Clone the repository",
+    "Install dependencies",
+    "Run the showcase demo",
+    "Start building!",
+  ]));
+  await sleep(500);
+
+  // ── 8. Badges ──────────────────────────────────────────────────
+  divider("8. BADGES");
+
+  console.log("  " + Badge.success("PASS") + "  " + Badge.error("FAIL") + "  " + Badge.warning("WARN") + "  " + Badge.info("INFO") + "  " + Badge.neutral("N/A"));
+  console.log();
+  console.log("  " + Badge.outline("typescript", fg.blue) + "  " + Badge.outline("node.js", fg.green) + "  " + Badge.outline("v1.0.0", fg.yellow) + "  " + Badge.outline("MIT", fg.gray));
+  console.log();
+  console.log("  " + Badge.status("Production", fg.green) + "   " + Badge.status("Staging", fg.yellow) + "   " + Badge.status("Development", fg.blue) + "   " + Badge.status("Offline", fg.red));
+  console.log();
+  console.log("  " + Badge.custom("DEPLOY", fg.black, bg.brightMagenta) + "  " + Badge.custom("RELEASE", fg.black, bg.brightCyan) + "  " + Badge.custom("HOTFIX", fg.white, bg.red));
+  await sleep(500);
+
+  // ── 9. Color Palette ──────────────────────────────────────────
+  divider("9. COLOR PALETTE");
 
   console.log("  " + colorize("  Standard Colors  ", style.bold, style.underline));
   console.log();
@@ -284,7 +356,7 @@ async function main() {
   // ── Final ───────────────────────────────────────────────────────
   console.log();
   const finalBox = new Box({
-    title: "🎉 Showcase Complete",
+    title: "Showcase Complete",
     titleAlignment: "center",
     borderStyle: "double",
     borderColor: fg.brightGreen,
@@ -293,8 +365,8 @@ async function main() {
   });
 
   console.log(finalBox.render(
-    colorize("All components rendered successfully!", fg.brightWhite, style.bold) + "\n" +
-    colorize("Run the interactive select demo with:", fg.gray) + "\n" +
+    colorize("All 11 components rendered successfully!", fg.brightWhite, style.bold) + "\n" +
+    colorize("Run the interactive demo with:", fg.gray) + "\n" +
     colorize("  npx tsx src/demos/interactive.ts", fg.brightCyan)
   ));
   console.log();

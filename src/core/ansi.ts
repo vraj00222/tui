@@ -100,7 +100,7 @@ export function colorize(text: string, ...codes: string[]): string {
 }
 
 // ── Strip ANSI codes (for measuring visible string length) ────────
-const ANSI_REGEX = /\x1b\[[0-9;]*m|\x1b\[[\d;]*[A-HJKSTf]|\x1b[78]/g;
+const ANSI_REGEX = /\x1b\[[0-9;]*m|\x1b\[[\d;]*[A-HJKSTf]|\x1b[78]|\x1b\[\?25[hl]/g;
 export function stripAnsi(text: string): string {
   return text.replace(ANSI_REGEX, "");
 }

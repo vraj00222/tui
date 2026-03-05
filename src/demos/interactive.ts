@@ -1,13 +1,15 @@
 /**
- * Interactive Demo – showcases the select component and combines
+ * Interactive Demo – showcases interactive components and combines
  * multiple components for an interactive experience.
  *
  * Run:  npx tsx src/demos/interactive.ts
  */
 
 import {
-  fg, style, colorize,
+  fg, bg, style, colorize,
   Spinner, ProgressBar, Box, Table, select,
+  Toast, toast, List, Badge,
+  input, confirm,
   typewriter, gradientWave, shimmer, bouncingText,
 } from "../index.js";
 
@@ -41,12 +43,16 @@ async function main() {
       const choice = await select({
         message: "What would you like to see?",
         options: [
-          { label: "🔄 Spinner Demo", value: "spinner", description: "Animated loading indicators" },
-          { label: "📊 Progress Bar Demo", value: "progress", description: "Animated progress bars" },
-          { label: "📦 Box Styles Demo", value: "boxes", description: "Different border styles" },
-          { label: "📋 Table Demo", value: "table", description: "Formatted data table" },
-          { label: "✨ Animated Text", value: "animated", description: "Text animation effects" },
-          { label: "🚪 Exit", value: "exit", description: "Quit the demo" },
+          { label: "Spinner Demo", value: "spinner", description: "Animated loading indicators" },
+          { label: "Progress Bar Demo", value: "progress", description: "Animated progress bars" },
+          { label: "Box Styles Demo", value: "boxes", description: "Different border styles" },
+          { label: "Table Demo", value: "table", description: "Formatted data table" },
+          { label: "Animated Text", value: "animated", description: "Text animation effects" },
+          { label: "Toast Notifications", value: "toast", description: "Styled notification messages" },
+          { label: "Lists", value: "list", description: "Styled list rendering" },
+          { label: "Badges", value: "badge", description: "Colored inline labels" },
+          { label: "Input & Confirm", value: "input", description: "Interactive text input" },
+          { label: "Exit", value: "exit", description: "Quit the demo" },
         ],
       });
 
@@ -116,12 +122,17 @@ async function main() {
           const table = new Table({
             headers: ["Feature", "Status", "Description"],
             rows: [
-              ["Spinner", colorize("✔", fg.green), "9 built-in styles"],
-              ["Progress", colorize("✔", fg.green), "Gradient & ETA support"],
-              ["Box", colorize("✔", fg.green), "6 border styles"],
-              ["Select", colorize("✔", fg.green), "Keyboard navigation"],
-              ["Text FX", colorize("✔", fg.green), "4 animation types"],
-              ["Table", colorize("✔", fg.green), "This component!"],
+              ["Spinner", colorize("Done", fg.green), "9 built-in styles"],
+              ["Progress", colorize("Done", fg.green), "Gradient & ETA"],
+              ["Box", colorize("Done", fg.green), "6 border styles"],
+              ["Select", colorize("Done", fg.green), "Keyboard navigation"],
+              ["Text FX", colorize("Done", fg.green), "4 animation types"],
+              ["Table", colorize("Done", fg.green), "This component!"],
+              ["Toast", colorize("Done", fg.green), "4 notification types"],
+              ["Input", colorize("Done", fg.green), "Validation support"],
+              ["Confirm", colorize("Done", fg.green), "Yes/No prompt"],
+              ["List", colorize("Done", fg.green), "6 list styles"],
+              ["Badge", colorize("Done", fg.green), "Presets & custom"],
             ],
           });
           console.log(table.render());
@@ -151,13 +162,13 @@ async function main() {
               break;
             case "gradient":
               await gradientWave({
-                text: "★ Rainbow colors flowing through text ★",
+                text: "Rainbow colors flowing through text",
                 duration: 4000,
               });
               break;
             case "shimmer":
               await shimmer({
-                text: "✨ Watch the sparkles dance across the text ✨",
+                text: "Watch the sparkles dance across the text",
                 duration: 4000,
                 baseColor: fg.brightCyan,
               });
@@ -174,9 +185,100 @@ async function main() {
           break;
         }
 
+        case "toast": {
+          console.log(toast.success("Deployment completed successfully!"));
+          console.log();
+          console.log(toast.error("Failed to connect to database"));
+          console.log();
+          console.log(toast.warn("Rate limit approaching (90%)"));
+          console.log();
+          console.log(toast.info("New version available: v2.0.0"));
+          console.log();
+          break;
+        }
+
+        case "list": {
+          const listStyle = await select({
+            message: "Choose a list style:",
+            options: [
+              { label: "Bullet", value: "bullet" },
+              { label: "Arrow", value: "arrow" },
+              { label: "Numbered", value: "numbered" },
+              { label: "Task", value: "task" },
+            ],
+          });
+          console.log();
+
+          if (listStyle === "task") {
+            const list = new List({ style: "task" });
+            console.log(list.render([
+              { text: "Initialize project", checked: true },
+              { text: "Install dependencies", checked: true },
+              { text: "Write components", checked: true },
+              { text: "Add tests", checked: false },
+              { text: "Deploy to production", checked: false },
+            ]));
+          } else {
+            const list = new List({ style: listStyle as any });
+            console.log(list.render([
+              "First item",
+              { text: "Second item with children", children: [
+                { text: "Sub-item A" },
+                { text: "Sub-item B" },
+              ]},
+              "Third item",
+              "Fourth item",
+            ]));
+          }
+          console.log();
+          break;
+        }
+
+        case "badge": {
+          console.log("  Preset badges:");
+          console.log("  " + Badge.success("PASS") + "  " + Badge.error("FAIL") + "  " + Badge.warning("WARN") + "  " + Badge.info("INFO"));
+          console.log();
+          console.log("  Outline badges:");
+          console.log("  " + Badge.outline("typescript", fg.blue) + "  " + Badge.outline("v1.0.0", fg.yellow) + "  " + Badge.outline("MIT", fg.green));
+          console.log();
+          console.log("  Status indicators:");
+          console.log("  " + Badge.status("Online", fg.green) + "   " + Badge.status("Degraded", fg.yellow) + "   " + Badge.status("Offline", fg.red));
+          console.log();
+          break;
+        }
+
+        case "input": {
+          try {
+            const name = await input({
+              message: "What is your name?",
+              placeholder: "Enter your name...",
+            });
+
+            const proceed = await confirm({
+              message: `Hello ${name}! Continue the demo?`,
+              defaultValue: true,
+            });
+
+            if (proceed) {
+              const secret = await input({
+                message: "Enter a secret (masked):",
+                mask: "*",
+                validate: (v) => v.length >= 3 || "Must be at least 3 characters",
+              });
+              console.log(toast.success(`Got it! Your secret is ${secret.length} characters long.`));
+            } else {
+              console.log(toast.info("No problem!"));
+            }
+          } catch {
+            // cancelled
+          }
+          console.log();
+          break;
+        }
+
         case "exit":
           running = false;
-          console.log(colorize("👋 Goodbye!", fg.brightCyan, style.bold));
+          console.log(colorize("Goodbye!", fg.brightCyan, style.bold));
           console.log();
           break;
       }

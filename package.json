@@ -8,7 +8,8 @@
     "build": "tsc",
     "showcase": "tsx src/demos/showcase.ts",
     "interactive": "tsx src/demos/interactive.ts",
-    "dev": "tsx watch src/demos/showcase.ts"
+    "dev": "tsx watch src/demos/showcase.ts",
+    "test": "tsx --test src/tests/*.test.ts"
   },
   "keywords": ["tui", "terminal", "cli", "components"],
   "author": "",
