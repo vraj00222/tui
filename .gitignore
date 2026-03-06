@@ -5,4 +5,5 @@ dist/
 *.js.map
 *.d.ts.map
 !src/**
+!docs/**
 .DS_Store
