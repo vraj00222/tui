@@ -1,6 +1,6 @@
 import { ComponentPage } from "@/components/ComponentPage";
 
-const CODE = `import { toast, Toast } from "tui";
+const CODE = `import { toast, Toast } from "@vr_patel/tui";
 
 // Quick one-liners
 console.log(toast.success("Build completed!"));

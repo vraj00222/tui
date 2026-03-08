@@ -1,6 +1,6 @@
 import { ComponentPage } from "@/components/ComponentPage";
 
-const CODE = `import { List } from "tui";
+const CODE = `import { List } from "@vr_patel/tui";
 
 // Bullet list with nesting
 const list = new List({ style: "bullet" });

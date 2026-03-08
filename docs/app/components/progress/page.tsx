@@ -1,6 +1,6 @@
 import { ComponentPage } from "@/components/ComponentPage";
 
-const CODE = `import { ProgressBar } from "tui";
+const CODE = `import { ProgressBar } from "@vr_patel/tui";
 
 const bar = new ProgressBar({
   total: 100,

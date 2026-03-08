@@ -1,6 +1,6 @@
 import { ComponentPage } from "@/components/ComponentPage";
 
-const CODE = `import { confirm } from "tui";
+const CODE = `import { confirm } from "@vr_patel/tui";
 
 const ok = await confirm({
   message: "Delete all files?",

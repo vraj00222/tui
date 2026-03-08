@@ -16,5 +16,6 @@
     "isolatedModules": true,
     "moduleDetection": "force"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/demos", "src/tests"]
 }

@@ -16,7 +16,7 @@ const COMPONENTS = [
   { href: "/components/badge", icon: "◆", name: "Badge", desc: "Colored labels, outlines & dot indicators" },
 ];
 
-const QUICK_START = `import { Spinner, ProgressBar, Box, toast, Badge } from "tui";
+const QUICK_START = `import { Spinner, ProgressBar, Box, toast, Badge } from "@vr_patel/tui";
 
 // Spinner with live updates
 const spinner = new Spinner({ text: "Loading...", style: "dots" });
@@ -57,8 +57,8 @@ export default function HomePage() {
 
         <div className="inline-flex items-center gap-3 bg-term-surface border border-term-border rounded-lg px-4 py-3 font-mono text-sm">
           <span className="text-term-green">$</span>
-          <span className="text-term-text">npm install tui</span>
-          <CopyButton code="npm install tui" />
+          <span className="text-term-text">npm install @vr_patel/tui</span>
+          <CopyButton code="npm install @vr_patel/tui" />
         </div>
       </div>
 

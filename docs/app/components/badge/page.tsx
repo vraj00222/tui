@@ -1,6 +1,6 @@
 import { ComponentPage } from "@/components/ComponentPage";
 
-const CODE = `import { Badge, badge, fg, bg } from "tui";
+const CODE = `import { Badge, badge, fg, bg } from "@vr_patel/tui";
 
 // Preset badges
 console.log(Badge.success("PASS"));

@@ -1,4 +1,4 @@
-# tui
+# @vr_patel/tui
 
 A **zero-dependency** TypeScript Terminal UI component library built entirely on ANSI escape codes. Inspired by the sleek terminal interfaces of modern CLI tools like Claude Code.
 
@@ -8,7 +8,8 @@ A **zero-dependency** TypeScript Terminal UI component library built entirely on
   <img src="https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js" />
   <img src="https://img.shields.io/badge/Components-11-purple" />
   <img src="https://img.shields.io/badge/Tests-61%20passing-brightgreen" />
-  <img src="https://img.shields.io/badge/License-ISC-yellow" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow" />
+  <img src="https://img.shields.io/npm/v/@vr_patel/tui?color=red&label=npm" />
 </p>
 
 ---
@@ -283,7 +284,7 @@ src/
 ### Spinner
 
 ```typescript
-import { Spinner } from "tui";
+import { Spinner } from "@vr_patel/tui";
 
 const spinner = new Spinner({ text: "Loading...", style: "dots" });
 spinner.start();
@@ -301,7 +302,7 @@ spinner.info("Note:");      // ℹ blue
 ### Progress Bar
 
 ```typescript
-import { ProgressBar } from "tui";
+import { ProgressBar } from "@vr_patel/tui";
 
 const bar = new ProgressBar({
   total: 100,
@@ -322,7 +323,7 @@ bar.finish("Download complete!");
 ### Box / Panel
 
 ```typescript
-import { Box, fg, style, colorize } from "tui";
+import { Box, fg, style, colorize } from "@vr_patel/tui";
 
 const box = new Box({
   title: "Server Status",
@@ -341,7 +342,7 @@ console.log(box.render(
 ### Interactive Select
 
 ```typescript
-import { select } from "tui";
+import { select } from "@vr_patel/tui";
 
 const choice = await select({
   message: "Pick a framework:",
@@ -358,7 +359,7 @@ console.log(`You chose: ${choice}`);
 ### Table
 
 ```typescript
-import { Table, fg, colorize } from "tui";
+import { Table, fg, colorize } from "@vr_patel/tui";
 
 const table = new Table({
   headers: ["Name", "Role", "Status"],
@@ -374,7 +375,7 @@ console.log(table.render());
 ### Toast Notifications
 
 ```typescript
-import { toast, Toast } from "tui";
+import { toast, Toast } from "@vr_patel/tui";
 
 // Quick one-liners
 console.log(toast.success("Build completed!"));
@@ -390,7 +391,7 @@ console.log(t.success("Deployed to production"));
 ### Input
 
 ```typescript
-import { input } from "tui";
+import { input } from "@vr_patel/tui";
 
 const name = await input({ message: "What is your name?" });
 
@@ -409,7 +410,7 @@ const password = await input({
 ### Confirm
 
 ```typescript
-import { confirm } from "tui";
+import { confirm } from "@vr_patel/tui";
 
 const ok = await confirm({
   message: "Delete all files?",
@@ -424,7 +425,7 @@ if (ok) {
 ### List
 
 ```typescript
-import { List } from "tui";
+import { List } from "@vr_patel/tui";
 
 // Bullet list with nesting
 const list = new List({ style: "bullet" });
@@ -449,7 +450,7 @@ console.log(tasks.render([
 ### Badge
 
 ```typescript
-import { Badge, badge, fg, bg } from "tui";
+import { Badge, badge, fg, bg } from "@vr_patel/tui";
 
 // Preset badges
 console.log(Badge.success("PASS"));
@@ -470,7 +471,7 @@ console.log(Badge.custom("DEPLOY", fg.black, bg.brightMagenta));
 ### Animated Text
 
 ```typescript
-import { typewriter, gradientWave, shimmer, bouncingText } from "tui";
+import { typewriter, gradientWave, shimmer, bouncingText } from "@vr_patel/tui";
 
 // Typewriter — characters appear one by one
 await typewriter({ text: "Hello, world!", speed: 40 });
@@ -488,7 +489,7 @@ await bouncingText({ text: "BOUNCE", duration: 4000 });
 ### Low-level ANSI Utilities
 
 ```typescript
-import { fg, bg, style, colorize, cursor, erase } from "tui";
+import { fg, bg, style, colorize, cursor, erase } from "@vr_patel/tui";
 
 // Compose colors and styles
 console.log(colorize("Bold cyan text", fg.cyan, style.bold));

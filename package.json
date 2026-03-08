@@ -1,20 +1,56 @@
 {
-  "name": "tui",
+  "name": "@vr_patel/tui",
   "version": "1.0.0",
-  "description": "TypeScript Terminal UI Components",
+  "description": "Zero-dependency TypeScript Terminal UI component library — spinners, progress bars, tables, inputs, and more, built entirely on ANSI escape codes.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
+    "prepublishOnly": "npm run build",
     "showcase": "tsx src/demos/showcase.ts",
     "interactive": "tsx src/demos/interactive.ts",
     "dev": "tsx watch src/demos/showcase.ts",
     "test": "tsx --test src/tests/*.test.ts"
   },
-  "keywords": ["tui", "terminal", "cli", "components"],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "tui",
+    "terminal",
+    "cli",
+    "components",
+    "ansi",
+    "spinner",
+    "progress",
+    "table",
+    "select",
+    "input",
+    "typescript",
+    "zero-dependency"
+  ],
+  "author": "Vraj Patel",
+  "license": "MIT",
   "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vraj00222/tui.git"
+  },
+  "homepage": "https://github.com/vraj00222/tui#readme",
+  "bugs": {
+    "url": "https://github.com/vraj00222/tui/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "devDependencies": {
     "@types/node": "^25.3.3",
     "tsx": "^4.21.0",

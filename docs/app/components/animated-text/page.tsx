@@ -1,6 +1,6 @@
 import { ComponentPage } from "@/components/ComponentPage";
 
-const CODE = `import { typewriter, gradientWave, shimmer, bouncingText } from "tui";
+const CODE = `import { typewriter, gradientWave, shimmer, bouncingText } from "@vr_patel/tui";
 
 // Typewriter — characters appear one by one
 await typewriter({ text: "Hello, world!", speed: 40, color: fg.brightGreen });

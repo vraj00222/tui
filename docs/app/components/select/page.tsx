@@ -1,6 +1,6 @@
 import { ComponentPage } from "@/components/ComponentPage";
 
-const CODE = `import { select } from "tui";
+const CODE = `import { select } from "@vr_patel/tui";
 
 const choice = await select({
   message: "Pick a framework:",

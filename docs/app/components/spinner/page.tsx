@@ -1,6 +1,6 @@
 import { ComponentPage } from "@/components/ComponentPage";
 
-const CODE = `import { Spinner } from "tui";
+const CODE = `import { Spinner } from "@vr_patel/tui";
 
 const spinner = new Spinner({ text: "Loading...", style: "dots" });
 spinner.start();

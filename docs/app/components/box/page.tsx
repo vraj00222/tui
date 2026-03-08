@@ -1,6 +1,6 @@
 import { ComponentPage } from "@/components/ComponentPage";
 
-const CODE = `import { Box, fg, style, colorize } from "tui";
+const CODE = `import { Box, fg, style, colorize } from "@vr_patel/tui";
 
 const box = new Box({
   title: "Server Status",

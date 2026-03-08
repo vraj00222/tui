@@ -1,6 +1,6 @@
 import { ComponentPage } from "@/components/ComponentPage";
 
-const CODE = `import { Table, fg, colorize } from "tui";
+const CODE = `import { Table, fg, colorize } from "@vr_patel/tui";
 
 const table = new Table({
   headers: ["Name", "Role", "Status"],

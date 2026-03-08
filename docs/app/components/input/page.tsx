@@ -1,6 +1,6 @@
 import { ComponentPage } from "@/components/ComponentPage";
 
-const CODE = `import { input } from "tui";
+const CODE = `import { input } from "@vr_patel/tui";
 
 // Basic input
 const name = await input({ message: "What is your name?" });
